@@ -1,12 +1,12 @@
 import React from 'react';
 import { Search, Bell, Plus, User, Users, Calendar, Settings, LogOut, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function NetflixCloneStatic() {
+export default function NetflixClonePoster() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200">
-      <div className="flex h-screen select-none pointer-events-none">
+    <div className="h-screen overflow-hidden pointer-events-none select-none bg-gradient-to-br from-gray-100 to-gray-200">
+      <div className="flex h-full overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-64 bg-white rounded-3xl m-4 p-6 shadow-lg hidden lg:block">
+        <aside className="w-64 bg-white rounded-3xl m-4 p-6 shadow-lg hidden lg:block overflow-hidden">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-800">Netflix.</h1>
           </div>
@@ -73,8 +73,8 @@ export default function NetflixCloneStatic() {
           </div>
         </aside>
 
-        {/* Main Content */}
-        <main className="flex-1 overflow-y-auto p-4 lg:p-8">
+        {/* Main Content (sin scroll) */}
+        <main className="flex-1 overflow-hidden p-4 lg:p-8">
           {/* Header */}
           <header className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
@@ -159,9 +159,15 @@ export default function NetflixCloneStatic() {
                 </div>
               </div>
               <div className="absolute bottom-8 right-8 flex gap-2">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl"></div>
-                <div className="w-16 h-12 bg-gradient-to-r from-orange-500 to-orange-400 rounded-xl"></div>
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl"></div>
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl overflow-hidden">
+                  <img src="/banner.webp" alt="" className="w-full h-full object-cover opacity-60" />
+                </div>
+                <div className="w-16 h-12 bg-gradient-to-r from-orange-500 to-orange-400 rounded-xl overflow-hidden">
+                  <img src="/banner.webp" alt="" className="w-full h-full object-cover" />
+                </div>
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl overflow-hidden">
+                  <img src="/banner.webp" alt="" className="w-full h-full object-cover opacity-60" />
+                </div>
               </div>
             </div>
           </div>
@@ -298,21 +304,28 @@ export default function NetflixCloneStatic() {
         </main>
 
         {/* Right Sidebar - Friends */}
-        <aside className="w-20 bg-white rounded-3xl m-4 p-4 shadow-lg hidden xl:flex flex-col items-center gap-4">
-          <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center text-white shadow-lg">
-            <Plus className="w-6 h-6" />
+        <aside className="w-20 bg-white rounded-3xl m-4 shadow-lg hidden xl:flex flex-col relative overflow-hidden">
+          {/* Toggle button (solo decorativo) */}
+          <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-12 bg-white rounded-l-lg shadow-md flex items-center justify-center z-10">
+            <ChevronLeft className="w-4 h-4 text-gray-400" />
           </div>
-          <div className="w-full h-px bg-gray-200 my-2"></div>
-          {[50, 51, 52, 53, 54, 55, 56, 57].map((num) => (
-            <div key={num} className="relative">
-              <img 
-                src={`https://i.pravatar.cc/50?img=${num}`} 
-                alt="" 
-                className="w-12 h-12 rounded-full"
-              />
-              <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+          
+          <div className="p-4 flex flex-col items-center gap-4 h-full">
+            <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center text-white shadow-lg flex-shrink-0">
+              <Plus className="w-6 h-6" />
             </div>
-          ))}
+            <div className="w-full h-px bg-gray-200 my-2 flex-shrink-0"></div>
+            {[50, 51, 52, 53, 54, 55, 56, 57].map((num) => (
+              <div key={num} className="relative flex-shrink-0">
+                <img 
+                  src={`https://i.pravatar.cc/50?img=${num}`} 
+                  alt="" 
+                  className="w-12 h-12 rounded-full"
+                />
+                <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></span>
+              </div>
+            ))}
+          </div>
         </aside>
       </div>
     </div>
